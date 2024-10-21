@@ -1,0 +1,67 @@
+# Target
+
+mdriver
+
+# Prerequisites
+
+\*.d
+
+# Object files
+
+_.o
+_.ko
+_.obj
+_.elf
+
+# Linker output
+
+_.ilk
+_.map
+\*.exp
+
+# Precompiled Headers
+
+_.gch
+_.pch
+
+# Libraries
+
+_.lib
+_.a
+_.la
+_.lo
+
+# Shared objects (inc. Windows DLLs)
+
+_.dll
+_.so
+_.so._
+\*.dylib
+
+# Executables
+
+_.exe
+_.out
+_.app
+_.i*86
+*.x86_64
+\*.hex
+
+# Debug files
+
+_.dSYM/
+_.su
+_.idb
+_.pdb
+
+# Kernel Module Compile Results
+
+_.mod_
+\*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+.vscode
