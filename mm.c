@@ -26,6 +26,7 @@ team_t team = {
     "Jungle",
     "Seungchan Han",
     "seungchanhan00@gmail.com",
+    "",
     ""};
 
 // /* single word (4) or double word (8) alignment */
@@ -136,7 +137,23 @@ void *mm_malloc(size_t size)
     return bp;
 }
 
-/* 적절한 메모리 블록찾기 */
+/* 적절한 메모리 블록찾기 - first-fit */
+// static void *find_fit(size_t asize)
+// {
+//     void *bp;
+//     // 힙의 시작부터 끝까지 순회
+//     for (bp = heap_listp; GET_SIZE(HDRP(bp)) > 0; bp = NEXT_BLKP(bp))
+//     {
+//         // 할당되지 않은 블록이고 요청한 크기가 블록 크기보다 작거나 같으면
+//         if (!GET_ALLOC(HDRP(bp)) && (asize <= GET_SIZE(HDRP(bp))))
+//         {
+//             return bp;
+//         }
+//     }
+//     return NULL;
+// }
+
+/* 적절한 메모리 블록찾기 - next-fit */
 static void *find_fit(size_t asize) // last_bp는 이전에 탐색을 종료한 위치를 기억한다.
 {
     void *bp;
@@ -162,6 +179,36 @@ static void *find_fit(size_t asize) // last_bp는 이전에 탐색을 종료한 
     }
     return NULL; // 없을 경우 null 반환
 }
+
+/* 적절한 메모리 블록찾기 - best-fit */
+// static void *find_fit(size_t asize)
+// {
+//     void *bp;
+//     void *best_bp = NULL;
+//     size_t best_size = ~0; // 가장 큰 양수로 초기화
+//     size_t current_size;
+
+//     // 힙의 시작부터 끝까지 순회
+//     for (bp = heap_listp; GET_SIZE(HDRP(bp)) > 0; bp = NEXT_BLKP(bp))
+//     {
+//         if (!GET_ALLOC(HDRP(bp)) && (asize <= GET_SIZE(HDRP(bp))))
+//         {
+//             current_size = GET_SIZE(HDRP(bp));
+//             // 현재 블록이 지금까지 찾은 것 중 가장 적합한 크기인 경우
+//             if (current_size < best_size)
+//             {
+//                 best_size = current_size;
+//                 best_bp = bp;
+//                 // 정확히 같은 크기를 찾았다면 즉시 반환
+//                 if (current_size == asize)
+//                 {
+//                     return best_bp;
+//                 }
+//             }
+//         }
+//     }
+//     return best_bp;
+// }
 
 /* 메모리 블록의 할당 및 분할 */
 static void place(void *bp, size_t asize)
